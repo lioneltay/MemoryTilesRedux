@@ -1,17 +1,30 @@
-export const SET_STATUS = 'SET_STATUS'
-export const TICK_TIMER = 'TICK_TIMER'
-export const SET_TIMER = 'SET_TIMER'
-export const CHECK_ANSWER = 'CHECK_ANSWER'
-export const RESTART = 'RESTART'
-export const BEGIN = 'BEGIN'
-export const SHOW_HELP = 'SHOW_HELP'
+import { 
+	VIEWING, 
+	LOST, 
+	INTERACTING, 
+	WON 
+} from 'constants'
 
-export const SET_GRID_HEIGHT = 'SET_GRID_HEIGHT'
-export const SET_GRID_WIDTH = 'SET_GRID_WIDTH'
+import { 
+	FILLED_CORRECTLY, 
+	UNFILLED_CORRECTLY
+} from 'constants'
 
-export const CLICK_TILE = 'CLICK_TILE'
-export const SET_IN_PATTERN = 'SET_IN_PATTERN'
-
+import {
+	SET_STATUS,
+	TICK_TIMER,
+	SET_TIME_REMAINING,
+	SET_TIME_ALLOWED,
+	CHECK_ANSWER,
+	BEGIN,
+	SHOW_HELP,
+	SET_GRID_HEIGHT,
+	SET_GRID_WIDTH,
+	SET_NUM_IN_PATTERN,
+	REFRESH_TILES,
+	CLICK_TILE,
+	SET_IN_PATTERN
+} from 'constants'
 
 
 // ===============================
@@ -23,34 +36,24 @@ export function setStatus(status) {
 	}
 }
 
-export function tickTimer() {
+export function tickTimer(tickLength) {
 	return {
-		type: TICK_TIMER
+		type: TICK_TIMER,
+		tickLength
 	}
 }
 
-export function setTimer(time) {
+export function setTimeRemaining(time) {
 	return {
-		type: SET_TIMER,
+		type: SET_TIME_REMAINING,
 		time
 	}
 }
 
-export function checkAnswer() {
+export function setTimeAllowed(time) {
 	return {
-		type: CHECK_ANSWER
-	}
-}
-
-export function restart() {
-	return {
-		type: RESTART
-	}
-}
-
-export function begin() {
-	return {
-		type: BEGIN
+		type: SET_TIME_ALLOWED,
+		time
 	}
 }
 
@@ -58,6 +61,12 @@ export function showHelp(show) {
 	return {
 		type: SHOW_HELP,
 		show
+	}
+}
+
+export function begin() {
+	return {
+		type: BEGIN
 	}
 }
 
@@ -79,6 +88,19 @@ export function setGridWidth(width) {
 	}
 }
 
+export function setGridNumInPattern(numInPattern) {
+	return {
+		type: SET_NUM_IN_PATTERN,
+		numInPattern
+	}
+}
+
+export function refreshTiles() {
+	return {
+		type: REFRESH_TILES
+	}
+}
+
 
 // ===============================
 
@@ -96,10 +118,4 @@ export function setInPattern(tileIndex, inPattern) {
 		inPattern
 	}
 }
-
-
-
-
-
-
 

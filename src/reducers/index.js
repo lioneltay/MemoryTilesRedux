@@ -9,5 +9,9 @@ export {
 	LOST
 } from './gameReducers/reducer_game'
 
-
-
+export {
+	FILLED_CORRECTLY,
+	FILLED_INCORRECTLY,
+	UNFILLED_CORRECTLY,
+	UNFILLED_INCORRECTLY
+} from './gameReducers/reducer_tile'

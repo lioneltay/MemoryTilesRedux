@@ -1,21 +1,24 @@
+// External Libraries
 import React, { PropTypes } from 'react'
 
 
+// Tile Component
 function Tile({ 
 	filled, 
 	inPattern, 
 	status, 
 	showStatus,
 	reveal,
+	showHelp,
 	onClick, 
 	size }) {
 	
 	function classString() {
 		const filledStr = filled ? 'filled ' : 'unfilled '
 		const inPatternStr = inPattern ? 'inPattern ' : ''
-		const showStatusStr = showStatus ? 'show-status ' : ''
+		const showHelpStr = showHelp ? 'show-status ' : ''
 		const revealStr = reveal ? 'reveal' : ''
-		return `tile ${filledStr}${inPatternStr}${showStatusStr}${status}
+		return `tile ${filledStr}${inPatternStr}${showHelpStr}${status}
 			${revealStr}`
 	}
 	
@@ -37,9 +40,9 @@ function Tile({
 
 Tile.propTypes = {
 	filled: PropTypes.bool.isRequired,
+	showHelp: PropTypes.bool.isRequired,
 	inPattern: PropTypes.bool.isRequired,
 	status: PropTypes.string.isRequired,
-	showStatus: PropTypes.bool.isRequired,
 	reveal: PropTypes.bool.isRequired,
 	size: PropTypes.number.isRequired,
 	onClick: PropTypes.func

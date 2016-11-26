@@ -3,46 +3,34 @@ import tileReducer from './reducer_tile'
 
 import { 
 	SET_GRID_HEIGHT, 
-	SET_GRID_WIDTH, 
-	RESTART,
+	SET_GRID_WIDTH,
 	BEGIN,
-	setInPattern
-} from 'actions'
+	SET_NUM_IN_PATTERN,
+	REFRESH_TILES
+} from 'constants'
+
+import { setInPattern } from 'actions'
 
 
-const INIT_HEIGHT = 6
-const INIT_WIDTH = 6
-const INIT_NUM_IN_PATTERN = 10
-
-const INIT_STATE = {
-	height: INIT_HEIGHT,
-	width: INIT_WIDTH,
-	numInPattern: INIT_NUM_IN_PATTERN,
-	tiles: randomGrid(
-		INIT_HEIGHT,
-		INIT_WIDTH,
-		INIT_NUM_IN_PATTERN
-	)
-}
-
-
-export default function(state = INIT_STATE, action) {
+export default function(state = { tiles: [] }, action) {
 	switch (action.type) {
 		case SET_GRID_HEIGHT:
 			return { ...state, height: action.height }		
 		case SET_GRID_WIDTH:
 			return { ...state, width: action.width }
-		case RESTART:
-			return {
-				...INIT_STATE,
-				tiles: randomGrid(INIT_STATE.height, INIT_STATE.width, INIT_STATE.numInPattern)
-			}
+		case SET_NUM_IN_PATTERN:
+			return { ...state, numInPattern: action.numInPattern }
 		case BEGIN:
 			return {
 				...state,
 				tiles: state.tiles.map((tile) => {
 					return tileReducer(tile, action)
 				})
+			}
+		case REFRESH_TILES:
+			return {
+				...state,
+				tiles: randomGrid(state.height, state.width, state.numInPattern)
 			}
 		default:
 			return {
@@ -61,7 +49,7 @@ function randomGrid(height, width, numInPattern) {
 	for (let i = 0; i < height * width; i++) {
 		tiles[i] = tileReducer(undefined, {})
 	}
-
+	
 	let inPattern = 0
 	while(inPattern < numInPattern) {
 		let pos = randInt(0, tiles.length)

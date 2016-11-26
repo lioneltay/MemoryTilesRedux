@@ -2,9 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 
-import { App } from 'components'
+import { Game, App, Arcade } from 'components'
 import { gameReducer } from 'reducers'
 
 
@@ -18,86 +20,38 @@ const logger = store => next => action => {
 	return result
 }
 
+
 const reducer = combineReducers({ 
 	game: gameReducer
 })
 
-const store = createStore(reducer, applyMiddleware(logger))
+const store = createStore(reducer, applyMiddleware(thunk))
+
+// initialisation which will go in level selection later
+import { initialiseGame } from 'utils'
+
+store.dispatch(initialiseGame({
+	height: 3,
+	width: 3,
+	numInPattern: 3,
+	time: 10
+}))
+
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+  	<Router history={browserHistory}>
+  		<Route path='/' component={App} />
+  		<Route path='/play' component={Game} />
+  		<Route path='/arcade' component={Arcade} />
+  		<Route path='/arcade/play/:level' component={Game} />
+  	</Router>
   </Provider>
   , document.querySelector('.container'))
 
-// reducer tests
-import { 
-	SET_STATUS, 
-	SET_TIMER, 
-	TICK_TIMER, 
-	SET_GRID_HEIGHT, 
-	SET_GRID_WIDTH,
-	setStatus,
-	fillTile,
-	setInPattern,
-	checkAnswer
-} from 'actions'
 
-test()
 
-function test() {
-//	store.dispatch({
-//		type: 'wtf'
-//	})
-//
-//	store.dispatch({
-//		type: SET_STATUS,
-//		status: 'INTERACTING'
-//	})
-//	
-//	console.log('XXXXXX', store.getState())
-//
-//	store.dispatch({
-//		type: SET_STATUS,
-//		status: 'wtf'
-//	})
-//	
-//		store.dispatch({
-//			type: SET_TIMER,
-//			time: 5
-//		})
-////		
-//		store.dispatch({
-//			type: TICK_TIMER
-//		})
-	
-	
-//	store.dispatch(setInPattern(0,false))
-//	store.dispatch(setInPattern(1,true))
-//	
-//	store.dispatch(setStatus('INTERACTING'))
-//	
-//	
-//	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
+
 
 
 

@@ -43,6 +43,7 @@ body {
 	background: #AED7ED;
 }
 
+/*
 .tile.filled.FILLED_CORRECTLY.show-status {
 	background: #67BD85;
 }
@@ -50,6 +51,7 @@ body {
 .tile.unfilled.UNFILLED_CORRECTLY.show-status {
 	background: #67BD85;
 }
+*/
 
 .tile.filled.FILLED_INCORRECTLY.show-status {
 	background: #B71E26;
