@@ -21,9 +21,12 @@ body {
 	min-width: 300px;
 	margin: 0 auto;
 	border: 3px solid #f7f7aa;
+	background: #f7f7aa;
 }
 
+
 .tile {
+	position: relative;
 	border: 3px solid #f7f7aa;
 }
 
@@ -43,30 +46,97 @@ body {
 	background: #AED7ED;
 }
 
-/*
-.tile.filled.FILLED_CORRECTLY.show-status {
-	background: #67BD85;
+
+.tileInners {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: 80%;
+	width: 80%;
+	border-radius: 50%;
 }
 
-.tile.unfilled.UNFILLED_CORRECTLY.show-status {
-	background: #67BD85;
-}
-*/
-
-.tile.filled.FILLED_INCORRECTLY.show-status {
-	background: #B71E26;
+.tile.filled.FILLED_INCORRECTLY.show-status .tileInners {
+	border: 10px solid #B71E26;
 }
 
-.tile.unfilled.UNFILLED_INCORRECTLY.show-status {
-	background: #B71E26;
+.tile.unfilled.UNFILLED_INCORRECTLY.show-status .tileInners {
+	border: 10px solid #67BD85;
 }
 
 
+.Footer {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.Timer {
+	margin: 0px;
+}
+
+.timeBar {
+	display: flex;
+	height: 15px;
+	border: 1px solid black;
+	border-radius: 0 0 100px 100px;
+}
 
 
 
 
 
+.Arcade {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.arcadeLevelsContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 60%;
+	min-width: 300px;
+	margin: 0 auto;
+}
+
+.arcadeLevelsContainerTitle {
+	width: 100%;
+	text-align: left;
+	font-weight: 500;
+	font-size: 1.2em;
+}
+
+.arcadeSquare {
+	position: relative;
+}
+
+.area1 > .arcadeSquare, .area2 > .arcadeSquare {
+	width: 33%;
+	padding-top: 33%;
+}
+
+.area3 > .arcadeSquare {
+	width: 25%;
+	padding-top: 25%;
+}
+
+.arcadeLevelButton {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: 60%;
+	width: 60%;
+	
+	
+}
 
 
 

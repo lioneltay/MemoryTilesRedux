@@ -10,7 +10,7 @@ function Tile({
 	showStatus,
 	reveal,
 	showHelp,
-	onClick, 
+	toggleTile, 
 	size }) {
 	
 	function classString() {
@@ -29,12 +29,35 @@ function Tile({
 		}
 	}
 	
+	function handleMouseOver() {
+		if (toggleTile) {
+			return function(event) {
+				if (event.buttons === 1 || event.buttons === 2) {
+					toggleTile()
+				}
+			}
+		}		
+	}
+	
+	function disableContextMenu(event) {
+		event.preventDefault()
+	}
+	
+	function disableDragStart(event) {
+		event.preventDefault()
+	}
+	
 	return (
-		<div 
+		<div
 			className={classString()}
-			onClick={onClick}
 			style={style()}
-			/>
+			onDragStart={disableDragStart}			
+			onContextMenu={disableContextMenu}
+			onMouseDown={toggleTile}			
+			onMouseEnter={handleMouseOver()}
+			>
+			<div className='tileInners' />
+		</div>
 	)
 }
 
@@ -45,7 +68,7 @@ Tile.propTypes = {
 	status: PropTypes.string.isRequired,
 	reveal: PropTypes.bool.isRequired,
 	size: PropTypes.number.isRequired,
-	onClick: PropTypes.func
+	toggleTile: PropTypes.func
 }
 
 

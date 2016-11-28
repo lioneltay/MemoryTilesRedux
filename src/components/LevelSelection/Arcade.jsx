@@ -9,32 +9,26 @@ import { initialiseGame } from 'utils'
 import { ARCADE_LEVELS } from 'constants'
 
 
-function Arcade({ initialiseGame }) {
+function Arcade({ initialiseGame, children }) {
 	
-	function generatedLevels() {
-		return ARCADE_LEVELS.map((level, levelNum) => {
+	function generateLinks(areas) {
+		return areas.map((area) => {
 			return (
-				<div key={levelNum}>
-					<Link
-						to={`/arcade/play/${levelNum}`}
-						onClick={() => initialiseGame(level)}>
-						{levelNum}
-					</Link>
-				</div>
+				<Link 
+					className='btn btn-primary'
+					key={area.areaNum}
+					to={`/arcade/area/${area.areaNum}`} >
+					{area.areaNum}
+				</Link>
 			)
 		})
 	}
 	
-	console.log(ARCADE_LEVELS)
-	console.log(generatedLevels())
+	// TODO make a new component
 	return (
-		<div>
-			Hello this is the ARCADE component
-			
-			<div>
-				{generatedLevels()}
-			</div>
-			
+		<div className='Arcade'>
+			<h1>Areas</h1>
+			{generateLinks(ARCADE_LEVELS)}
 		</div>
 	)
 }

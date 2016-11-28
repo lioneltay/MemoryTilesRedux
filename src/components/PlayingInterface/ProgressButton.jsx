@@ -26,7 +26,7 @@ function ProgressButton({
 	}
 	
 	function buttonText() {
-		if (gameStatus === VIEWING) return 'Begin'
+		if (gameStatus === VIEWING) return 'Go'
 		else if (gameStatus === INTERACTING) return 'Check'
 		else return 'Restart'
 	}

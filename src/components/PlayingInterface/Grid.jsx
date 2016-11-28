@@ -23,13 +23,13 @@ function Grid({ gameStatus, grid, fillTile, showHelp }) {
 				key={i}
 				{...tile}
 				showHelp={showHelp}
-				onClick={ onTileClick() ? () => fillTile(i) : null}
+				toggleTile={ onToggleTile() ? () => fillTile(i) : null}
 				size={100/grid.width}
 				/>
 		})
 	}
 	
-	function onTileClick() {
+	function onToggleTile() {
 		return gameStatus === INTERACTING ?
 			fillTile :
 			null

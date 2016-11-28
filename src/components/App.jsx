@@ -11,12 +11,6 @@ function App() {
 			<ul>
 				<li>
 					<Link
-						to='/play' >
-						Play MemoryTiles !!
-					</Link>
-				</li>
-				<li>
-					<Link
 						to='/arcade' >
 						Arcade
 					</Link>

@@ -6,19 +6,11 @@ import thunk from 'redux-thunk'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 
-import { Game, App, Arcade } from 'components'
+import { Game, App, Arcade, Area, InvalidRoute } from 'components'
 import { gameReducer } from 'reducers'
 
 
-// my logger middleware
-const logger = store => next => action => {
-	console.group(action.type)
-	console.log(action)
-	const result = next(action)
-	console.log(JSON.stringify(store.getState(), null, 2))
-	console.groupEnd()
-	return result
-}
+import { loadLevel, logger } from 'utils'
 
 
 const reducer = combineReducers({ 
@@ -29,26 +21,26 @@ const store = createStore(reducer, applyMiddleware(thunk))
 
 // initialisation which will go in level selection later
 import { initialiseGame } from 'utils'
+import { ARCADE_LEVELS } from 'constants'
 
-store.dispatch(initialiseGame({
-	height: 3,
-	width: 3,
-	numInPattern: 3,
-	time: 10
-}))
+store.dispatch(initialiseGame(ARCADE_LEVELS[0].levels[0]))
+
 
 
 ReactDOM.render(
   <Provider store={store}>
   	<Router history={browserHistory}>
   		<Route path='/' component={App} />
-  		<Route path='/play' component={Game} />
-  		<Route path='/arcade' component={Arcade} />
-  		<Route path='/arcade/play/:level' component={Game} />
+  		
+  		<Route path='/arcade' component={Arcade}  />
+			<Route path='/arcade/area/:areaNum' component={Area} />
+			
+  		<Route path='/arcade/play/:areaNum/:levelNum' component={Game} onEnter={loadLevel(store)} />
+  		
+  		<Route path='*' component={InvalidRoute} />
   	</Router>
   </Provider>
   , document.querySelector('.container'))
-
 
 
 

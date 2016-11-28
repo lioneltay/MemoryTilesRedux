@@ -1,61 +1,29 @@
 // External Libraries
-import React, { PropTypes, Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-
-// Constants
-import { INTERACTING, VIEWING } from 'constants'
-
-
-// Action Creators
-import { initialiseGame } from 'utils'
 
 // Components
 import Grid from './Grid'
-import ProgressButton from './ProgressButton'
-
+import Footer from './Footer'
+import EndOverlay from './EndOverlay'
 
 // App Component
-class App extends Component {	
-	render() {
-		const { timeRemaining, gameStatus } = this.props
-		return (
-			<div className='app'>
-				<h1>MemoryTiles</h1>
-				<Grid />
-				<div>Time Remaining: {timeRemaining / 1000}</div>
-				<div>Game Status: {gameStatus}</div>
-				<ProgressButton />
-				<Link className='btn btn-primary' to='/'>Select Level</Link>
-			</div>
-		)
-	}
+function Game({ params: { areaNum, levelNum } }) {
+	return (
+		<div className='app'>
+			<h1>MemoryTiles</h1>
+			<Grid />
+			<Footer />
+			<EndOverlay areaNum={areaNum} levelNum={levelNum} />
+		</div>
+	)
 }
 
-App.propTypes = {
-	gameStatus: PropTypes.string.isRequired,
-	timeRemaining: PropTypes.number.isRequired,
-	initialiseGame: PropTypes.func.isRequired
+Game.propTypes = {
+	params: PropTypes.object.isRequired
 }
 
-
-// Container
-function mapStateToProps(state) {
-	return {
-		gameStatus: state.game.status,
-		timeRemaining: state.game.timeRemaining
-	}
-}
-
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ initialiseGame }, dispatch)
-}
-
-export default connect(
-	mapStateToProps, 
-	mapDispatchToProps
-)(App)
+export default Game
 
 
 
