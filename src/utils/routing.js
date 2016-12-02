@@ -2,6 +2,12 @@ import { initialiseGame } from 'utils'
 import { ARCADE_LEVELS } from 'constants'
 
 
+export function loadSurvivalGame(store) {
+	return function(nextState, replace) {
+		store.dispatch(initialiseGame(ARCADE_LEVELS[0].levels[0]))
+	}
+}
+
 export function loadLevel(store) {
 	return function(nextState, replace) {
 		const { areaNum, levelNum } = nextState.params
@@ -9,7 +15,6 @@ export function loadLevel(store) {
 		if (validLevel(areaNum, levelNum)) {
 			store.dispatch(initialiseGame(ARCADE_LEVELS[areaNum-1].levels[levelNum-1]))
 		} else {
-			console.log('invalid level')
 			replace('/invalid-route')
 		}
 	}

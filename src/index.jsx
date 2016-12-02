@@ -6,11 +6,19 @@ import thunk from 'redux-thunk'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 
-import { Game, App, Arcade, Area, InvalidRoute } from 'components'
+import { App, InvalidRoute } from 'components'
+
+import { Arcade, Area } from 'components/LevelSelection'
+
+import { 
+	ArcadeGame,
+	SurvivalGame
+} from 'components/PlayingInterface/GameModes'
+
 import { gameReducer } from 'reducers'
 
 
-import { loadLevel, logger } from 'utils'
+import { loadLevel, logger, loadSurvivalGame } from 'utils'
 
 
 const reducer = combineReducers({ 
@@ -26,6 +34,8 @@ import { ARCADE_LEVELS } from 'constants'
 store.dispatch(initialiseGame(ARCADE_LEVELS[0].levels[0]))
 
 
+console.log(SurvivalGame)
+console.log(ArcadeGame)
 
 ReactDOM.render(
   <Provider store={store}>
@@ -35,7 +45,9 @@ ReactDOM.render(
   		<Route path='/arcade' component={Arcade}  />
 			<Route path='/arcade/area/:areaNum' component={Area} />
 			
-  		<Route path='/arcade/play/:areaNum/:levelNum' component={Game} onEnter={loadLevel(store)} />
+  		<Route path='/arcade/play/:areaNum/:levelNum' component={ArcadeGame} onEnter={loadLevel(store)} />
+  		
+  		<Route path='/survival' component={SurvivalGame} onEnter={loadSurvivalGame} />
   		
   		<Route path='*' component={InvalidRoute} />
   	</Router>

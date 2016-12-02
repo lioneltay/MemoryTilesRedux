@@ -7,7 +7,8 @@ import {
 	setGridNumInPattern,
 	showHelp,
 	refreshTiles,
-	tickTimer
+	tickTimer,
+	setTimerId
 } from 'actions'
 
 import {
@@ -19,25 +20,32 @@ import {
 	FILLED_CORRECTLY,
 	UNFILLED_CORRECTLY,
 	
-	TICK_LENGTH
-} from 'constants'
+	PUNCH_FACTOR
+	
+} from 'constants/game'
+
+import { TICK_LENGTH } from 'constants'
 
 
 // Compound Actions
 export function checkAnswer() {
 	return function(dispatch, getState) {
-		const { tiles } = getState().game.grid
+		const state = getState()
+		const { tiles } = state.game.grid
+		const { timeRemaining, timeAllowed } = state.game
 		// Check if the answer is correct
 		const won = checkWin(tiles)
 		// Set status to won if won
 		if (won) return dispatch(setStatus(WON))
 		
 		// Otherwise show help briefly
-		console.log(showHelp(true))
 		dispatch(showHelp(true))		
 		setTimeout(() => {
 			dispatch(showHelp(false))
 		}, 500)
+		// And punch the player
+		const punch = Math.min(timeRemaining, timeAllowed * PUNCH_FACTOR)
+		dispatch(setTimeRemaining(timeRemaining - punch))
 	}
 }
 
@@ -62,6 +70,7 @@ export function initialiseGame({ height, width, numInPattern, time }) {
 		// Input in seconds, but game uses milliseconds
 		time = time * 1000
 		// Game Initialisation
+		dispatch(setStatus(LOST))
 		dispatch(setStatus(VIEWING))
 		dispatch(setTimeAllowed(time))
 		dispatch(setTimeRemaining(time))
@@ -81,17 +90,20 @@ export function initialiseGame({ height, width, numInPattern, time }) {
 
 // Starts the timer countdown and cleans up after itself
 function beginTimer(dispatch, getState) {
+	clearInterval(getState().game.timerId)
 	const id = setInterval(() => {
-		const { timeRemaining, status } = getState().game
+		const { timeRemaining, status, timerId } = getState().game
 		if (timeRemaining <= TICK_LENGTH) {
-			clearInterval(id)
+			clearInterval(timerId)
 			dispatch(setStatus(LOST))
 		}	else if (status !== VIEWING && status !== INTERACTING ) {
-			clearInterval(id)
+			clearInterval(timerId)
 			dispatch(setStatus(WON))
 		}
 		dispatch(tickTimer(TICK_LENGTH))
 	}, TICK_LENGTH)
+	
+	dispatch(setTimerId(id))
 }
 
 

@@ -2,14 +2,14 @@ import {
 	CLICK_TILE, 
 	SET_IN_PATTERN,
 	BEGIN
-} from 'constants'
+} from 'actions/types'
 
 import {
 	FILLED_CORRECTLY,
 	FILLED_INCORRECTLY,
 	UNFILLED_CORRECTLY,
 	UNFILLED_INCORRECTLY
-} from 'constants'
+} from 'constants/game'
 
 
 

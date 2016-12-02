@@ -6,13 +6,16 @@ import React, { PropTypes } from 'react'
 
 function Timer({ timeAllowed, timeRemaining }) {
 	const percent = timeRemaining/timeAllowed * 100
+	const style = { 
+		background: `linear-gradient(to right, #c2ecff, #36a6d8 ${percent}%, #b27d80 ${percent}%, #B71E26)` 
+	}
 	return (
 		<div className='Timer'>			
 			<div 
 				className='timeBar'
-				style={{ background: `linear-gradient(to right, #AED7ED, #AED7ED ${percent}%, #B71E26 ${percent}%, #B71E26)` }}
+				style={style}
 				/>
-			<h5 className='timeCounter'>Time Remaining: {Math.ceil(timeRemaining/1000)}</h5>
+			<h6 className='timeCounter'>Time Remaining: {Math.ceil(timeRemaining/1000)}</h6>
 		</div>
 		
 	)

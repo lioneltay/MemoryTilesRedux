@@ -1,0 +1,17 @@
+// ACTIONS
+export const SET_STATUS = 'SET_STATUS'
+export const TICK_TIMER = 'TICK_TIMER'
+export const SET_TIME_REMAINING = 'SET_TIME_REMAINING'
+export const SET_TIME_ALLOWED = 'SET_TIME_ALLOWED'
+export const CHECK_ANSWER = 'CHECK_ANSWER'
+export const BEGIN = 'BEGIN'
+export const SHOW_HELP = 'SHOW_HELP'
+export const SET_TIMER_ID = 'SET_TIMER_ID'
+
+export const SET_GRID_HEIGHT = 'SET_GRID_HEIGHT'
+export const SET_GRID_WIDTH = 'SET_GRID_WIDTH'
+export const SET_NUM_IN_PATTERN = 'SET_NUM_IN_PATTERN'
+export const REFRESH_TILES = 'REFRESH_TILES'
+
+export const CLICK_TILE = 'CLICK_TILE'
+export const SET_IN_PATTERN = 'SET_IN_PATTERN'

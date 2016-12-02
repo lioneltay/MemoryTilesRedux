@@ -7,7 +7,7 @@ import {
 	BEGIN,
 	SET_NUM_IN_PATTERN,
 	REFRESH_TILES
-} from 'constants'
+} from 'actions/types'
 
 import { setInPattern } from 'actions'
 

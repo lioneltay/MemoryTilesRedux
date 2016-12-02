@@ -1,35 +1,3 @@
-// ACTIONS
-export const SET_STATUS = 'SET_STATUS'
-export const TICK_TIMER = 'TICK_TIMER'
-export const SET_TIME_REMAINING = 'SET_TIME_REMAINING'
-export const SET_TIME_ALLOWED = 'SET_TIME_ALLOWED'
-export const CHECK_ANSWER = 'CHECK_ANSWER'
-export const BEGIN = 'BEGIN'
-export const SHOW_HELP = 'SHOW_HELP'
-
-export const SET_GRID_HEIGHT = 'SET_GRID_HEIGHT'
-export const SET_GRID_WIDTH = 'SET_GRID_WIDTH'
-export const SET_NUM_IN_PATTERN = 'SET_NUM_IN_PATTERN'
-export const REFRESH_TILES = 'REFRESH_TILES'
-
-export const CLICK_TILE = 'CLICK_TILE'
-export const SET_IN_PATTERN = 'SET_IN_PATTERN'
-
-
-// GAME STATUS
-export const INTERACTING = 'INTERACTING'
-export const VIEWING = 'VIEWING'
-export const WON = 'WON'
-export const LOST = 'LOST'
-
-
-// TILE STATUS
-export const FILLED_CORRECTLY = 'FILLED_CORRECTLY'
-export const FILLED_INCORRECTLY = 'FILLED_INCORRECTLY'
-export const UNFILLED_CORRECTLY = 'UNFILLED_CORRECTLY'
-export const UNFILLED_INCORRECTLY = 'UNFILLED_INCORRECTLY'
-
-
 // 
 export const TICK_LENGTH = 50
 

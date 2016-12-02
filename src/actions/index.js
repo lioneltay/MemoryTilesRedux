@@ -2,13 +2,11 @@ import {
 	VIEWING, 
 	LOST, 
 	INTERACTING, 
-	WON 
-} from 'constants'
-
-import { 
+	WON,
 	FILLED_CORRECTLY, 
 	UNFILLED_CORRECTLY
-} from 'constants'
+} from 'constants/game'
+
 
 import {
 	SET_STATUS,
@@ -23,8 +21,9 @@ import {
 	SET_NUM_IN_PATTERN,
 	REFRESH_TILES,
 	CLICK_TILE,
-	SET_IN_PATTERN
-} from 'constants'
+	SET_IN_PATTERN,
+	SET_TIMER_ID
+} from 'actions/types'
 
 
 // ===============================
@@ -67,6 +66,13 @@ export function showHelp(show) {
 export function begin() {
 	return {
 		type: BEGIN
+	}
+}
+
+export function setTimerId(id) {
+	return {
+		type: SET_TIMER_ID,
+		timerId: id
 	}
 }
 

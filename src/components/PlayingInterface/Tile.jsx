@@ -23,9 +23,13 @@ function Tile({
 	}
 	
 	function style() {
+		const marginPercent = 0.035
+		const margin = size * marginPercent
+		const width = size - 2 * margin
 		return {
-			width: `${size}%`,
-			paddingTop: `${size}%`
+			margin: `${margin}%`,
+			width: `${width}%`,
+			paddingTop: `${width}%`
 		}
 	}
 	
@@ -56,7 +60,7 @@ function Tile({
 			onMouseDown={toggleTile}			
 			onMouseEnter={handleMouseOver()}
 			>
-			<div className='tileInners' />
+			<div className='tileInner'></div>
 		</div>
 	)
 }

@@ -8,17 +8,18 @@ import {
 	CHECK_ANSWER,
 	BEGIN,
 	SHOW_HELP,
-	
+	SET_TIMER_ID
+} from 'actions/types'
+
+import {
 	INTERACTING,
 	VIEWING,
 	WON,
-	LOST
-} from 'constants'
-
-import { 
+	LOST,
 	FILLED_CORRECTLY, 
 	UNFILLED_CORRECTLY
-} from 'constants'
+} from 'constants/game'
+
 
 
 /*
@@ -29,6 +30,7 @@ game: {
 	timeRemaining: bool
 	showHelp: bool
 	grid: array
+	timerId: number
 }
 */
 
@@ -66,6 +68,13 @@ export default function(state = {}, action) {
 		return {
 			...state,
 			showHelp: action.show
+		}
+	}
+	
+	else if (action.type === SET_TIMER_ID) {
+		return {
+			...state,
+			timerId: action.timerId
 		}
 	}
 	

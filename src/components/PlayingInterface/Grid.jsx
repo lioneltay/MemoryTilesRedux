@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // Constants
-import { INTERACTING } from 'constants'
+import { INTERACTING } from 'constants/game'
 
 // Action Creators
 import { fillTile } from 'actions'
@@ -35,8 +35,14 @@ function Grid({ gameStatus, grid, fillTile, showHelp }) {
 			null
 	}	
 	
+	function onDragStart(event) {
+		event.preventDefault()
+	}
+	
 	return (
-		<div className='grid'>
+		<div 
+			className='grid'
+			onDragStart={onDragStart}>
 			{tileList()}
 		</div>
 	)
