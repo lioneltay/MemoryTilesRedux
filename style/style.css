@@ -17,6 +17,11 @@ html {
 
 body {
 	height: 100%;
+	padding: 25px;
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	min-width: 100vw;
 	background-blend-mode: multiply;
 	background-image: linear-gradient(to right, #1fdecf, #23e0ca, #1fdecf),
 	linear-gradient(to bottom, #1fdecf, #23e0ca, #1fdecf),

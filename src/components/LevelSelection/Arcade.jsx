@@ -28,7 +28,9 @@ function Arcade({ initialiseGame, children }) {
 	return (
 		<div className='Arcade'>
 			<h1>Areas</h1>
-			{generateLinks(ARCADE_LEVELS)}
+			<div className='arcade-buttons'>
+				{generateLinks(ARCADE_LEVELS)}
+			</div>			
 		</div>
 	)
 }

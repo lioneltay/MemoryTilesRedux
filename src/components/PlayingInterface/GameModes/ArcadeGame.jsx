@@ -27,7 +27,7 @@ function ArcadeGame({ params: { areaNum, levelNum } }) {
 				<PreviousLevelButton areaNum={areaNum} levelNum={levelNum}>
 					Previous Level
 				</PreviousLevelButton>
-				<Link to={`/arcade/area/${areaNum}`} >Select Level</Link>
+				<Link to={`/arcade`} >Select Level</Link>
 				<RestartButton>Restart</RestartButton>
 				<NextLevelButton areaNum={areaNum} levelNum={levelNum}>
 					Next Level

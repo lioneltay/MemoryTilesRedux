@@ -5,6 +5,20 @@
 	text-align: center;
 }
 
+.arcade-buttons {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 50px;
+}
+
+.arcade-buttons > a {
+	height: 50px;
+	width: 50px;
+	display: block;
+}
+
 .arcadeLevelsContainer {
 	display: flex;
 	flex-wrap: wrap;
